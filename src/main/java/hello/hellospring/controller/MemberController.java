@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class MemberController {
+public class MemberController { // 멤버와 관련된 웹 요청을 처리하는 컨트롤러
 
     private final MemberService memberService;
 
