@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 apply plugin: 'io.spring.dependency-management'
 
 java {
-	sourceCompatibility = '17'
+	sourceCompatibility = '11'
 }
 
 configurations {
