@@ -2,7 +2,6 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,13 +17,14 @@ class MemberServiceTest {
     @BeforeEach
     public void beforeEach() {
         memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
+        memberService = new MemberService(memberRepository); // DI
 
     }
     @AfterEach
     public void afterEach() {
         memberRepository.clearStore();
     }
+
     @Test
     public void 회원가입() throws Exception {
         //Given
@@ -38,6 +38,7 @@ class MemberServiceTest {
         Member findMember = memberRepository.findById(saveId).get();
         assertEquals(member.getName(), findMember.getName());
     }
+
     @Test
     public void 중복_회원_예외() throws Exception {
         //Given
@@ -53,4 +54,8 @@ class MemberServiceTest {
                 () -> memberService.join(member2));//예외가 발생해야 한다.
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
+
+        // Then
 }
+
+// 테스트 코드는 한글로 적어도 됨

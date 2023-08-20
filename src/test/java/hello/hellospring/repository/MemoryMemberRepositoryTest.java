@@ -3,13 +3,12 @@ import hello.hellospring.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
     @AfterEach
-    public void afterEach() {
+    public void afterEach() { // 테스트가 하나 끝나면 repository 를 비워줌
         repository.clearStore();
     }
 
