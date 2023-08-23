@@ -26,13 +26,15 @@ public class JpaMemberRepository implements MemberRepository {
        return Optional.ofNullable(member);
     }
 
-    @Override
     public Optional<Member> findByName(String name) {
-        return Optional.empty();
+        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
+        return result.stream().findAny();
     }
 
-    @Override
     public List<Member> findAll() {
-        return null;
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
     }
 }
