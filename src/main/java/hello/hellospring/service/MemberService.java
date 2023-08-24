@@ -25,9 +25,15 @@ public class MemberService {
 
         long start = System.currentTimeMillis();
 
-        validateDuplicateMember(member); //중복 회원 검증
-        memberRepository.save(member);
-        return member.getId();
+        try {
+            validateDuplicateMember(member); //중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs);
+        }
     }
 
     private void validateDuplicateMember(Member member) {
